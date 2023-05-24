@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ExampleComponent from './ExampleComponent';
 import LineChartExample from './Linechart';
 import LineChartExample1 from './LineChart1';
-import { Chart, LineController, PointElement, LinearScale, Title, Tooltip, CategoryScale } from 'chart.js';
 import './App.css'
 
 
