@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ExampleComponent from './ExampleComponent';
 import LineChartExample from './Linechart';
+import LineChartExample1 from './LineChart1';
 import { Chart, LineController, PointElement, LinearScale, Title, Tooltip, CategoryScale } from 'chart.js';
+import './App.css'
 
 
 function Imagenes({ data }) {
@@ -10,13 +12,20 @@ function Imagenes({ data }) {
   const handleToggleChart = () => {
       setShowChart(!showChart);
     };
+  const [showChart1, setShowChart1] = useState(false);
+
+  const handleToggleChart1 = () => {
+      setShowChart1(!showChart1);
+      console.log("se ejecuto")
+    };
   const puertaSrc = data && data["estado de puerta"] === 1 ? '/abierta.png' : '/cerrada.png';
   const termometroSrc = data && data["estado de termometro"] === 1 ? '/caliente.png' : '/frio.png';
 
 return (
 <div>
 <img src={puertaSrc} onClick={handleToggleChart} alt="Imagen Puerta" />
-<img src={termometroSrc} alt="Imagen Termómetro" /> 
+<img src={termometroSrc} onClick={handleToggleChart1} alt="Imagen Termómetro" /> 
+{showChart1 && <LineChartExample1 showChart1={showChart1} onToggleChart1={handleToggleChart1} />}
 {showChart && <LineChartExample showChart={showChart} onToggleChart={handleToggleChart} />}
 </div>
 );

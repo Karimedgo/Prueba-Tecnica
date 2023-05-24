@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const LineChartExample = ({ showChart, onToggleChart }) => {
+const LineChartExample1 = ({ showChart1, onToggleChart1 }) => {
   const [chartData, setChartData] = useState(null);
   const [dataLimit, setDataLimit] = useState(10); // Valor inicial del límite de datos
 
   useEffect(() => {
-    if (showChart) {
+    if (showChart1) {
       const fetchData = async () => {
         try {
           const response = await fetch('http://127.0.0.1:5800/leer_datos');
           const jsonData = await response.json();
 
-          const transformedData = Object.entries(jsonData["datos_puerta"]).map(([fecha, valor]) => ({
+          const transformedData = Object.entries(jsonData["datos_termometro"]).map(([fecha, valor]) => ({
             fecha,
             valor
           }));
@@ -28,15 +28,15 @@ const LineChartExample = ({ showChart, onToggleChart }) => {
 
       fetchData();
     }
-  }, [showChart, dataLimit]);
+  }, [showChart1, dataLimit]);
 
   const handleDataLimitChange = (event) => {
     const limit = parseInt(event.target.value);
     setDataLimit(limit);
   };
 
-  if (!showChart) {
-    return <button onClick={onToggleChart}>Mostrar Gráfico</button>;
+  if (!showChart1) {
+    return <button onClick={onToggleChart1}>Mostrar Gráfico</button>;
   }
 
   let transformedData = null; // Definir la variable transformedData aquí
@@ -68,9 +68,9 @@ const LineChartExample = ({ showChart, onToggleChart }) => {
         <p>Cargando datos...</p>
       )}
       </div>
-      <button onClick={onToggleChart}>Ocultar Gráfico</button>
+      <button onClick={onToggleChart1}>Ocultar Gráfico</button>
     </div>
   );
 };
 
-export default LineChartExample;
+export default LineChartExample1;
